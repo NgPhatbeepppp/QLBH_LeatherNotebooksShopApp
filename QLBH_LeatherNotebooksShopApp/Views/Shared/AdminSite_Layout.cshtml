@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <title>AdminSite</title>
+    <link rel="stylesheet" href="~/Content/css/Admin.css" />
+    <script>
+        function toggleSubMenu(menuId) {
+            var submenu = document.getElementById(menuId + '-submenu');
+            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-right">
+            <a href="@Url.Action("Index", "Home")" class="fa-solid fa-house"></a>
+            <a href="@Url.Action("Login", "Customer")" class="fa-solid fa-right-from-bracket"></a>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="topsidebar-left">
+            <img src="~/images/Logo.png" alt="Logo" class="logo">
+            <hr>
+            <span class="site-title">AdminSite</span>
+        </div>
+
+        <!-- Quản lý Danh mục -->
+        <div class="menu-item" onclick="toggleSubMenu('category')">
+            <i class="fa-solid fa-table-list"></i>
+            Quản lý Danh mục
+            <div id="category-submenu" class="submenu">
+                <a href="@Url.Action("Create", "Categories")">Thêm Danh mục</a>
+                <a href="@Url.Action("Index", "Categories")">Xem Danh sách Danh mục</a>
+            </div>
+        </div>
+
+        <!-- Quản lý Sản phẩm -->
+        <div class="menu-item" onclick="toggleSubMenu('product')">
+            <i class="fa-solid fa-cube"></i>
+            Quản lý Sản phẩm
+            <div id="product-submenu" class="submenu">
+                <a href="@Url.Action("Create", "Products")">Thêm Sản phẩm</a>
+                <a href="@Url.Action("Index", "Products")">Xem Danh sách Sản phẩm</a>
+            </div>
+        </div>
+
+        <!-- Quản lý Đơn hàng -->
+        <div class="menu-item" onclick="toggleSubMenu('order')">
+            <i class="fa-regular fa-clipboard"></i>
+            Quản lý Đơn hàng
+            <div id="order-submenu" class="submenu">
+                <a href="@Url.Action("Index", "Order")">Danh Sách Đơn hàng</a>
+                <a href="@Url.Action("Cancel", "Order")">Hủy Đơn hàng</a>
+                <a href="@Url.Action("Deliver", "Order")">Giao hàng</a>
+            </div>
+        </div>
+
+        <!-- Quản lý Người dùng -->
+        <div class="menu-item" onclick="toggleSubMenu('user')">
+            <i class="fa-solid fa-users"></i>
+            Quản lý Người dùng
+            <div id="user-submenu" class="submenu">
+                <a href="@Url.Action("Index", "Customer")">Danh sách Người dùng</a>
+                <a href="@Url.Action("AddCustomer", "Customer")">Thêm Người dùng</a>
+                <a href="@Url.Action("Block", "Customer")">Vô hiệu hóa/Khôi phục Tài khoản</a>          
+            </div>
+        </div>
+
+        <!-- Báo cáo -->
+        <div class="menu-item" onclick="toggleSubMenu('report')">
+            <img src="~/images/analytics.png" />
+            Báo cáo
+            <div id="report-submenu" class="submenu">
+                <a href="@Url.Action("Monthly", "Report")">Doanh thu theo Tháng</a>
+                <a href="@Url.Action("Popular", "Report")">Sản phẩm Bán chạy</a>
+                <a href="@Url.Action("Loyal", "Report")">Khách hàng Thân thiết</a>
+            </div>
+        </div>
+    </div>
+       <!-- Quản lý Danh mục -->
+        <div class="menu-item" onclick="toggleSubMenu('reviews')">
+            <i class="fa-solid fa-table-list"></i>
+            Quản lý đánh giá
+            <div id="category-submenu" class="submenu">
+                <a href="@Url.Action("", "")">Xem các bài đánh giá</a>
+                <a href="@Url.Action("", "")"></a>
+            </div>
+        </div>
+    <!-- Dashboard Content -->
+    <div class="dashboard">
+        <h1>@ViewData["Title"]</h1>
+        <div id="dashboard-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Scripts Section -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

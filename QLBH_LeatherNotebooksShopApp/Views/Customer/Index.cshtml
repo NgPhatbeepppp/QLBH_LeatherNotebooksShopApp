@@ -1,0 +1,38 @@
+﻿@model IEnumerable<QLBH_LeatherNotebooksShopApp.Models.Customer>
+
+@{
+    ViewBag.Title = "Customer List";
+      Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link href="~/Content/css/UserIndex.css" rel="stylesheet" />
+<h2>Danh sách người dùng</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.NameCus</td>
+                <td>@customer.PhoneCus</td>
+                <td>@customer.EmailCus</td>
+                <td>@customer.Role</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Customer", new { id = customer.IDCus })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Customer", new { id = customer.IDCus })" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Thêm một liên kết để quay lại trang thêm người dùng -->
+<a href="@Url.Action("AddCustomer", "Customer")" class="btn btn-primary">Thêm Người Dùng</a>

@@ -1,0 +1,26 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Category
+
+@{
+    ViewBag.Title = "Chi tiết";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/CreateCate.css" />
+<h2>Chi Tiết Danh Mục</h2>
+
+<div class="category-details-container">
+    <h4>Danh Mục</h4>
+    <hr />
+    <dl class="category-details">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameCate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NameCate)
+        </dd>
+    </dl>
+</div>
+
+<p class="action-links">
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.CategoryID }, new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Quay Lại Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+</p>

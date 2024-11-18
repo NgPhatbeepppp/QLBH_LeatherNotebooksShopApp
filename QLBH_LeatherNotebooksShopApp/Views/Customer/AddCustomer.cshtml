@@ -1,0 +1,59 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Customer
+
+@{
+    ViewBag.Title = "Add New Customer";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/css/UserAdd.css">
+
+<div class="container">
+    <h2 class="title">Add New Customer</h2>
+    @using (Html.BeginForm("AddCustomer", "Customer", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="NameCus" name="NameCus" placeholder="Enter full name" value="@Model.NameCus" required />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="text" id="PhoneCus" name="PhoneCus" placeholder="Enter phone number" value="@Model.PhoneCus" required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="EmailCus" name="EmailCus" placeholder="Enter email address" value="@Model.EmailCus" required />
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="Username" name="Username" placeholder="Enter username" value="@Model.Username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Password"><i class="zmdi zmdi-lock"></i></label>
+            <input type="password" name="Password" id="Password" placeholder="Mật khẩu" />
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword"><i class="zmdi zmdi-lock-outline"></i></label>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" />
+            @Html.ValidationMessage("confirmPassword", "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <label for="role">Role</label>
+            @Html.DropDownListFor(m => m.Role, new SelectList(new[] { "Customer", "Employee", "Admin" }), "Select role", new { required = "required" })
+            @Html.ValidationMessageFor(m => m.Role, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="submit-btn">Add Customer</button>
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    }
+</div>

@@ -1,0 +1,181 @@
+﻿@model IEnumerable<QLBH_LeatherNotebooksShopApp.Models.Product>
+
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/Style.css" />
+<!-- Slider Section -->
+<section id="Slider">
+    <div class="aspect-ratio-169">
+        <div class="slide">
+            <img src="~/Content/imagelogo/Slider2.jpg" />
+            <div class="slide-title">Welcome to NoteWorthy</div>
+        </div>
+        <div class="slide">
+            <img src="~/Content/imagelogo/slider3.jpg" />
+            <div class="slide-title">Discover Our Premium Notebooks</div>
+        </div>
+        <div class="slide">
+            <img src="~/Content/imagelogo/slider4.jpg" />
+            <div class="slide-title">Personalize Your Experience</div>
+        </div>
+        <div class="slide">
+            <img src="~/Content/imagelogo/slider5.jpg" />
+            <div class="slide-title">Quality You Can Trust</div>
+        </div>
+    </div>
+
+    <div class="dot-container">
+        <ul>
+            <li class="dot active"></li>
+            <li class="dot"></li>
+            <li class="dot"></li>
+            <li class="dot"></li>
+        </ul>
+    </div>
+</section>
+
+
+<!-- 4-Step Banner Section -->
+<div class="Banner4b" style="background:#ffffff">
+    <div class="Step-Container" padding: 0 5px;>
+        <div class="BannerWrp">
+            <h3 class="F-step">
+                <span style="color:#000;">4 BƯỚC ĐỂ TẠO NÊN CUỐN SỔ CỦA RIÊNG BẠN</span>
+            </h3>
+        </div>
+        <div class="Main-step">
+            <div class="step">
+                <div class="B1">
+                    <img src="~/images/b1.jpg" />
+                </div>
+                <div class="B2">
+                    <img src="~/images/b2.jpg" />
+                </div>
+                <div class="B3">
+                    <img src="~/images/b3.jpg" />
+                </div>
+                <div class="B4">
+                    <img src="~/images/b4.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Bố Cục 5A-->
+<div class="image-layout">
+    <!-- Hai ảnh vuông bên trái -->
+    <div class="column left">
+        <div class="image-wrapper">
+            <a href="~/Views/Home/BiaProducts.cshtml">
+                <img src="~/images/A1_5.jpg" alt="Image 1">
+            </a>
+        </div>
+        <div class="image-wrapper">
+            <a href="~/Views/Home/RuotProducts.cshtml">
+                <img src="~/images/A2_5.jpg" alt="Image 2">
+            </a>
+        </div>
+    </div>
+
+    <!-- Ảnh hình chữ nhật ở giữa -->
+    <div class="column center">
+        <div class="image-wrapper">
+            <a href="~/Views/Home/SetProducts.cshtml">
+                <img src="~/images/a3_5.jpg" alt="Image 3">
+            </a>
+        </div>
+    </div>
+
+    <!-- Hai ảnh vuông bên phải -->
+    <div class="column right">
+        <div class="image-wrapper">
+            <a href="">
+                <img src="~/images/a4_5.jpg" alt="Image 4">
+            </a>
+        </div>
+        <div class="image-wrapper">
+            <a href="~/Views/Home/PhuKienProducts.cshtml">
+                <img src="~/images/A5_5.jpg" alt="Image 5">
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div id="toast" class="toast"></div>
+<!-- Product Categories Sections -->
+<div class="SetSo">
+    <div class="TD">
+        <a>SET SỔ TAY NOTEWORTHY</a>
+    </div>
+    <div class="partialview-set">
+        @Html.Partial("PartialProbycate", Model.Where(p => p.CategoryID == 6).ToList())
+    </div>
+</div>
+<div class="SetSo">
+    <div class="TD">
+        <a>BÌA SỔ TAY NOTEWORTHY</a>
+    </div>
+    <div class="partialview-set">
+        @Html.Partial("PartialProbycate", Model.Where(p => p.CategoryID == 2).ToList())
+    </div>
+</div>
+
+<div class="SetSo">
+    <div class="TD">
+        <a>RUỘT SỔ NOTEWORTHY</a>
+    </div>
+    <div class="partialview-set">
+        @Html.Partial("PartialProbycate", Model.Where(p => p.CategoryID == 3).ToList())
+    </div>
+</div>
+
+<div class="SetSo">
+    <div class="TD">
+        <a>PHỤ KIỆN SỔ</a>
+    </div>
+    <div class="partialview-set">
+        @Html.Partial("PartialProbycate", Model.Where(p => p.CategoryID == 4).ToList())
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelectorAll("#Slider .slide");
+            const dots = document.querySelectorAll(".dot-container .dot");
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.transform = `translateX(-${index * 100}%)`;
+                    slide.classList.remove("active");
+                    dots[i].classList.remove("active");
+                });
+                slides[index].classList.add("active");
+                dots[index].classList.add("active");
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            }
+
+            // Tự động chuyển ảnh sau 4 giây
+            setInterval(nextSlide, 5000);
+
+            // Sự kiện click cho các chấm để chuyển slide
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", function () {
+                    currentIndex = index;
+                    showSlide(currentIndex);
+                });
+            });
+
+            // Khởi tạo slide đầu tiên
+            showSlide(currentIndex);
+        });
+
+    </script>
+}

@@ -1,0 +1,101 @@
+﻿/* Tổng thể */
+body {
+    font-family: "Times New Roman";
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+}
+h2 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Button "Tạo Mới" */
+p a {
+    background-color: #428C7F;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+    p a:hover {
+        background-color: #285459;
+        color: white;
+    }
+
+/* Bảng */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th,
+.table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+    .table th {
+        background-color: #F2D680;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+.table td {
+    font-size: 14px;
+    background-color: #ffffff;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Hàng xen kẽ màu */
+.table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hàng khi hover */
+.table tr:hover {
+    background-color: #e9f5ff;
+}
+
+/* Các nút tương tác */
+.table td a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.table td a:hover {
+    color: #0056b3;
+}
+
+.table td a.delete {
+    color: #dc3545; /* Màu đỏ cho nút xóa */
+}
+
+.table td a.delete:hover {
+    color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .table,
+    .table th,
+    .table td {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    p a {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}

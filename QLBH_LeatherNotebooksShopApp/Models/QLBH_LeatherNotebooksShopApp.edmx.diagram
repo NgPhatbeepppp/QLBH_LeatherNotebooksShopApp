@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f55e11be390741978fd7dde4108fcfb4" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.BlogPost" Width="1.5" PointX="1.125" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Category" Width="1.5" PointX="15.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Categories_Posts" Width="1.5" PointX="0.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Comment" Width="1.5" PointX="4.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.OrderDetail" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Order" Width="1.5" PointX="7.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Product" Width="1.5" PointX="13.125" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Review" Width="1.5" PointX="10.375" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__BlogPosts__Categ__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Comments__BlogPo__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Products__Catego__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Comments__Parent__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__OrderDeta__IDOrd__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__OrderDeta__IDPro__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Reviews__Product__6A30C649" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLBH_LeatherNotebooksShopAppModel.Customer" Width="1.5" PointX="7.375" PointY="1.375" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Comments__UserId__75A278F5" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Orders__IDCus__5BE2A6F2" />
+        <AssociationConnector Association="QLBH_LeatherNotebooksShopAppModel.FK__Reviews__Custome__6B24EA82" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

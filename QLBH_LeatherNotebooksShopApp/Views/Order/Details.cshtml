@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+
+@model QLBH_LeatherNotebooksShopApp.Models.Order
+
+<div class="details-container">
+    <h2>Chi Tiết Đơn Hàng</h2>
+    <div class="details-item">
+        <strong>Khách hàng: </strong>@Model.Customer.NameCus
+    </div>
+    <div class="details-item">
+        <strong>Ngày Đặt: </strong>@Model.DateOrder.ToString("dd/MM/yyyy")
+    </div>
+    <div class="details-item">
+        <strong>Địa Chỉ Giao Hàng: </strong>@Model.AddressDeliverry
+    </div>
+    <div class="details-item">
+        <strong>Trạng Thái: </strong>@Model.OrderStatus
+    </div>
+    <div class="details-item">
+        <strong>Ghi Chú: </strong>@Model.Note
+    </div>
+
+    <h3>Chi Tiết Sản Phẩm</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng</th>
+                <th>Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.NamePro</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.UnitPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<style>
+    .details-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .details-item {
+        margin-bottom: 10px;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+</style>

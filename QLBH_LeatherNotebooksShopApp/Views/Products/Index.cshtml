@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QLBH_LeatherNotebooksShopApp.Models.Product>
+
+@{
+    ViewBag.Title = "Sản Phẩm";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/IndexPro.css" />
+<h2 class="page-title">Danh Sách Sản Phẩm</h2>
+
+<p>
+    @Html.ActionLink("Thêm Sản Phẩm", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+<table class="table product-table">
+    <thead>
+        <tr>
+            <th>Ảnh</th>
+            <th>@Html.DisplayNameFor(model => model.NamePro)</th>
+            <th>@Html.DisplayNameFor(model => model.DecriptionPro)</th>
+            <th>@Html.DisplayNameFor(model => model.Price)</th>
+            <th>@Html.DisplayNameFor(model => model.Quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.Category.NameCate)</th>
+            <th>Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="product-image">
+                    <img src="@Url.Content(item.ImagePro)" height="50" width="50" />
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.NamePro)</td>
+                <td>@Html.DisplayFor(modelItem => item.DecriptionPro)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Category.NameCate)</td>
+                <td class="action-links">
+                    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.ProductID }) |
+                    @Html.ActionLink("Chi Tiết", "Details", new { id = item.ProductID }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

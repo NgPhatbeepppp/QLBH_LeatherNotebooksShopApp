@@ -1,0 +1,107 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Product
+
+@{
+    ViewBag.Title = "Tạo Sản Phẩm";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link href="~/Content/css/CreateProduct.css" rel="stylesheet" />
+<h2>Tạo Sản Phẩm Mới</h2>
+
+@using (Html.BeginForm("Create", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Sản Phẩm</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!-- Product Name -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.NamePro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NamePro, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NamePro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.DecriptionPro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DecriptionPro, new { @class = "form-control form-control-description" })
+            @Html.ValidationMessageFor(model => model.DecriptionPro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <!-- Product Category -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryID, "Danh mục", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.CategoryID, (SelectList)ViewBag.CategoryID, "Chọn Danh mục", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Product Price -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Image Preview -->
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <img id="previewImg" src="~/images/default-image.png" style="width: 150px; height: 150px;" />
+        </div>
+    </div>
+
+    <!-- Upload Image -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.UploadImage, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="UploadImage" id="imageFile" accept="image/*" onchange="previewImage(this)" />
+            @Html.ValidationMessageFor(model => model.UploadImage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Product Quantity -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Tạo mới sản phẩm" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<!-- Back to List Link -->
+<div>
+    @Html.ActionLink("Quay Lại Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+</div>
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#previewImg').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}

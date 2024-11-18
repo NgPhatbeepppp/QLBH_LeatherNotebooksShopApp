@@ -1,0 +1,36 @@
+﻿@model IEnumerable<QLBH_LeatherNotebooksShopApp.Models.Category>
+
+@{
+    ViewBag.Title = "Danh Sách Danh Mục";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/CateIndex.css" />
+
+<h2>Danh Sách Danh Mục</h2>
+
+<p>
+    @Html.ActionLink("Tạo Mới", "Create", null, new { @class = "btn-create" })
+</p>
+
+<table class="table category-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCate)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = item.CategoryID }, new { @class = "action-link" }) |
+                @Html.ActionLink("Xem Danh Mục", "Details", new { id = item.CategoryID }, new { @class = "action-link" }) |
+                @Html.ActionLink("Xóa Danh Mục", "Delete", new { id = item.CategoryID }, new { @class = "action-link delete" })
+            </td>
+        </tr>
+    }
+</table>

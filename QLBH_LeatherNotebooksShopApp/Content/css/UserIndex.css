@@ -1,0 +1,112 @@
+﻿/* Tổng thể */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+h2 {
+    text-align: center;
+    color: #428C7F;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+/* Bảng */
+.table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+    .table th, .table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #428C7F;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .table td {
+        background-color: #f9f9f9;
+    }
+
+    .table tr:hover {
+        background-color: #f2f2f2;
+    }
+
+/* Nút Edit và Delete */
+.btn {
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-warning {
+    background-color: #f2d680;
+    color: #333;
+    border: 1px solid #f2d680;
+}
+
+    .btn-warning:hover {
+        background-color: #d6c158;
+        color: #fff;
+    }
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    border: 1px solid #e74c3c;
+}
+
+    .btn-danger:hover {
+        background-color: #c0392b;
+        color: #fff;
+    }
+
+/* Nút Add New Customer */
+.btn-primary {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #428C7F;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .btn-primary:hover {
+        background-color: #2a6d59;
+    }
+
+/* Liên kết quay lại */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Cải thiện phần giao diện tổng thể */
+table {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}

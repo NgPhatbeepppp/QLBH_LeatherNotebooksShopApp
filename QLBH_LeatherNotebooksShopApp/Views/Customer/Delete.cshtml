@@ -1,0 +1,59 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+
+<h2>Xác nhận xóa khách hàng</h2>
+<p>Bạn có chắc chắn muốn xóa khách hàng này không?</p>
+<div class="confirm-delete">
+    <h4>Khách hàng: @Model.NameCus</h4>
+    <p>Email: @Model.EmailCus</p>
+    <p>Địa chỉ: @Model.Address</p>
+
+    <form action="@Url.Action("ConfirmDelete", "Customer", new { id = Model.IDCus })" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger">Xóa</button>
+        <a href="@Url.Action("Index", "Customer")" class="btn btn-secondary">Hủy</a>
+    </form>
+
+</div>
+<style>
+    /* Màu chủ đạo */
+    .confirm-delete {
+        background-color: #F2D680; /* Màu nền chính */
+        color: #428C7F; /* Màu chữ chính */
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .btn-danger {
+        background-color: #FF6B6B; /* Màu đỏ cho nút xóa */
+        border: none;
+        padding: 10px 20px;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-secondary {
+        background-color: #ccc; /* Màu xám cho nút hủy */
+        border: none;
+        padding: 10px 20px;
+        color: #333;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin-bottom: 5px;
+    }
+</style>

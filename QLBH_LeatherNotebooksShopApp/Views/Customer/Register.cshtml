@@ -1,0 +1,71 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Customer
+
+@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml"; <!-- Use your main layout here -->
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/Content/css/Login.css">
+</head>
+<body>
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Đăng ký</h2>
+                        @using (Html.BeginForm("Register", "Customer", FormMethod.Post, new { @class = "register-form", id = "register-form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group">
+                                <label for="Username"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="Username" id="Username" placeholder="Tên của bạn" value="@Model.Username" />
+                                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="EmailCus"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="EmailCus" id="EmailCus" placeholder="Email của bạn" value="@Model.EmailCus" />
+                                @Html.ValidationMessageFor(m => m.EmailCus, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Password"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="Password" id="Password" placeholder="Mật khẩu" />
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Xác nhận mật khẩu" />
+                                @Html.ValidationMessage("confirmPassword", "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" value="Đăng ký" class="btn btn-primary" />
+                            </div>
+                        }
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="~/images/signup-image.jpg" alt="sign up image"></figure>
+                        <a href="~/Customer/Login" class="signup-image-link">Tôi đã có tài khoản</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

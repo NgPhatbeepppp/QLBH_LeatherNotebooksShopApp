@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+    var customer = (QLBH_LeatherNotebooksShopApp.Models.Customer)Session["Customer"]; // Thay 'YourNamespace.Models.Customer' bằng tên namespace và class thực tế của bạn
+}
+@using QLBH_LeatherNotebooksShopApp.Models
+@model QLBH_LeatherNotebooksShopApp.Models.CheckoutViewModel
+@using System.Globalization
+<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="~/Content/css/CheckOut.css">
+</head>
+<body>
+    <div class="checkout-container">
+        <h1>Thông Tin Thanh Toán</h1>
+
+        <!-- Thông Tin Khách Hàng -->
+        <div class="form-section">
+            <h2>Thông Tin Khách Hàng</h2>
+            @if (customer != null)
+            {
+                <form method="post" action="/Checkout/SubmitOrder">
+                    <div class="form-group">
+                        <label for="NameCus">Họ và tên:</label>
+                        <input type="text" id="NameCus" name="NameCus" value="@customer.NameCus" />
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneCus">Số điện thoại:</label>
+                        <input type="text" id="PhoneCus" name="PhoneCus" value="@customer.PhoneCus" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Address">Địa chỉ:</label>
+                        <input type="text" id="Address" name="Address" value="@customer.Address" />
+                    </div>
+                </form>
+            }
+            else
+            {
+                <p>Không tìm thấy thông tin khách hàng. Vui lòng đăng nhập lại.</p>
+            }
+        </div>
+
+        <div class="separator"></div>
+
+        <!-- Phương Thức Thanh Toán -->
+        <div class="form-section">
+            <h2>Phương Thức Thanh Toán</h2>
+            <div class="form-group">
+                <input type="radio" id="payment_cod" name="PaymentMethod" value="COD" checked>
+                <label for="payment_cod">Thanh toán khi nhận hàng (COD)</label>
+            </div>
+            <div class="form-group">
+                <input type="radio" id="payment_transfer" name="PaymentMethod" value="Transfer">
+                <label for="payment_transfer">Chuyển khoản ngân hàng</label>
+            </div>
+            <div id="transfer-info" class="transfer-info" style="display: none;">
+                <p><strong>Thông tin chuyển khoản:</strong></p>
+                <p><strong>Số tài khoản:</strong> 123456789</p>
+                <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                <p><strong>Nội dung:</strong> Tên + số điện thoại</p>
+            </div>
+        </div>
+
+        <div class="separator"></div>
+
+        <!-- Giỏ Hàng -->
+        <div class="form-section">
+            <h2>Giỏ Hàng</h2>
+            @using (Html.BeginForm())
+            {
+
+
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ((Cart)Session["Cart"]).Items)
+                        {
+                            <tr>
+                                <td>@item.Product.NamePro</td>
+                                <td>@item.Quantity</td>
+                                <td>@string.Format(new CultureInfo("vi-VN"), "{0:N0}", item.Product.Price)</td>
+                                <td>@string.Format(new CultureInfo("vi-VN"), "{0:N0}", item.Product.Price * item.Quantity)</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3"><strong>Tổng cộng:</strong></td>
+                            <td>499,000 VND</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="separator"></div>
+
+                <!-- Nút Đặt Hàng -->
+        <div class="form-section">
+            <button type="submit" value="Checkout" class="btn-submit" />
+        </div>
+
+            }
+        </div>
+    </div>
+    <script>
+        // Hiển thị/ẩn thông tin chuyển khoản
+        const paymentTransfer = document.getElementById('payment_transfer');
+        const paymentCod = document.getElementById('payment_cod');
+        const transferInfo = document.getElementById('transfer-info');
+
+        paymentTransfer.addEventListener('click', () => {
+            transferInfo.style.display = 'block';
+        });
+
+        paymentCod.addEventListener('click', () => {
+            transferInfo.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
+

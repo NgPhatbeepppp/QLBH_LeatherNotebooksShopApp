@@ -1,0 +1,26 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Product
+
+@{
+    ViewBag.Title = "Chi Tiết sản phẩm";
+    Layout = "~/Views/Shared/AdminSite_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/Content/css/DetailsPro.css" />
+<h2>Chi Tiết Sản Phẩm</h2>
+
+<div class="product-details-container">
+    <div class="product-image">
+        <img src="@Url.Content(Model.ImagePro)" alt="Ảnh Sản Phẩm" />
+    </div>
+    <div class="product-info">
+        <h3>@Model.NamePro</h3>
+        <p><strong>Mô Tả:</strong> @Model.DecriptionPro</p>
+        <p><strong>Giá:</strong> $@Model.Price</p>
+        <p><strong>Số Lượng:</strong> @Model.Quantity</p>
+        <p><strong>Danh Mục:</strong> @Model.Category.NameCate</p>
+
+        <div class="action-links">
+            @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.ProductID }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Quay Lại Danh Sách", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>

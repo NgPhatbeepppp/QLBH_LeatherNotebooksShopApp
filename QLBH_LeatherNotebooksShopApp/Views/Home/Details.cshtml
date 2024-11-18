@@ -1,0 +1,182 @@
+﻿@model QLBH_LeatherNotebooksShopApp.Models.Product
+@using System.Globalization
+<!DOCTYPE html>
+<html lang="vi">
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="~/Content/site.css" />
+    <script src="~/js/site.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Views/Home/Index.cshtml">TRANG CHU</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.NamePro</li>
+        </ol>
+    </nav>
+    <div class="product-detail">
+        <div id="toast" class="toast"></div>
+        <div class="product-image">
+            <img src="@Url.Content(Model.ImagePro)" alt="@Model.NamePro" />
+        </div>
+        <div class="product-info">
+            <h2 class="product-name">@Model.NamePro</h2>
+            <button class="add-to-cart-btn" onclick="addToCart(@Model.ProductID)">
+                <i class="fas fa-shopping-cart"></i> Thêm vào giỏ hàng
+            </button>
+            <p class="product-price">@Model.Price.ToString("N0", new CultureInfo("vi-VN")) VND</p>
+            <p class="product-description">@Model.DecriptionPro</p>
+
+            <!-- Phần thông số kỹ thuật hoặc chi tiết sản phẩm -->
+            <div class="product-specifications">
+                <h3>Thông số kỹ thuật</h3>
+                <br />
+                <ul>
+                    <li>Kích thước: 21 x 14.8 cm</li>
+                    <li>Trọng lượng: 300g</li>
+                    <li>Chất liệu: Da thật</li>
+                    <!-- Các thông số khác có thể thêm tại đây -->
+                </ul>
+            </div>
+            <br />
+            <div class="product-specifications">
+                <h3>Tính năng</h3>
+                <br />
+                <ul>
+                    <li>Màu sắc đa dạng</li>
+                    <li>Độ bền tới 9 năm</li>
+                    <li>Dộ bền cao chống thắm nước</li>
+                    <!-- Các thông số khác có thể thêm tại đây -->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Phần đánh giá sản phẩm -->
+    <div class="product-reviews">
+        <h3>Đánh giá từ khách hàng</h3>
+        <!-- Ví dụ về một đánh giá -->
+        <div class="review">
+            <p><strong>Nguyễn Văn A:</strong> Sản phẩm rất đẹp, chất lượng tốt!</p>
+            <p>⭐⭐⭐⭐⭐</p>
+        </div>
+        <!-- Thêm các đánh giá khác nếu có -->
+    </div>
+
+    <style>
+        body {
+            padding: 20px; /* Padding cho body */
+            font-family: 'Open Sans';
+        }
+
+        .product-detail {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+            margin: auto;
+            margin: 20px;
+            border-top: 1px solid #f0c14b;
+        }
+        .breadcrumb {
+            background-color: transparent;
+            padding: 8px;
+            margin-bottom: 20px;
+            font-size:12px; 
+        }
+
+
+        .product-image {
+            flex: 1;
+            max-width: 400px;
+            margin-right: 20px;
+        }
+
+            .product-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px; /* Thêm bo tròn hình ảnh */
+            }
+
+        .product-info {
+            flex: 2;
+            max-width: 600px;
+        }
+
+        .product-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 24px;
+            color: #b12704;
+            margin: 10px 0;
+        }
+
+        .product-description {
+            margin: 18px 0;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .product-specifications {
+            margin: 20px 0;
+        }
+
+            .product-specifications h3 {
+                font-size: 20px;
+                font-weight: bold;
+                color: #444;
+            }
+
+            .product-specifications ul {
+                list-style-type: disc;
+                padding-left: 20px;
+            }
+
+        .add-to-cart-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ffd15c;
+            cursor: pointer;
+            font-size: 16px;
+            color: #333;
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+
+            .add-to-cart-btn:hover {
+                background-color: #ddb347;
+            }
+
+        .product-reviews {
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+            .product-reviews h3 {
+                font-size: 22px;
+                font-weight: bold;
+                color: #333;
+            }
+
+        .review {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</body>
+</html>

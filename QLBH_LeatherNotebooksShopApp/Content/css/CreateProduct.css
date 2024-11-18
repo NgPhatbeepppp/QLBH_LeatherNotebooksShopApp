@@ -1,0 +1,138 @@
+﻿/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h2 {
+    color: #428C7F;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Form Container */
+.form-horizontal {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .form-horizontal h4 {
+        color: #428C7F;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+/* Labels */
+.form-group label {
+    color: #428C7F;
+    font-weight: bold;
+}
+
+.control-label {
+    margin-top: 6px;
+    text-align: right;
+}
+
+/* Input Fields */
+.form-control {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+    .form-control:focus {
+        border-color: #428C7F;
+        outline: none;
+    }
+
+/* Dropdown */
+.form-group select.form-control {
+    background-color: #F2D680;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Validation Messages */
+.text-danger {
+    color: #d9534f;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #428C7F;
+    border-color: #428C7F;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+    .btn-primary:hover {
+        background-color: #366f64;
+        border-color: #366f64;
+    }
+
+.btn-secondary {
+    background-color: #F2D680;
+    color: #333;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+    .btn-secondary:hover {
+        background-color: #e3c46f;
+    }
+
+/* Image Preview */
+#previewImg {
+    display: block;
+    margin: 10px auto;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* File Input Label */
+.form-group input[type="file"] {
+    margin-top: 5px;
+}
+
+/* Form Group Spacing */
+.form-group {
+    margin-bottom: 15px;
+}
+
+    /* Align Submit Button */
+    .form-group .col-md-offset-2 {
+        margin-left: 17%;
+    }
+
+/* Action Link Styling */
+a {
+    color: #428C7F;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+    a:hover {
+        color: #366f64;
+    }
+/* Adjust Description Field Width */
+.form-group .form-control-description {
+    width: 100%; /* Makes the description input take the full width */
+    height: 100px; /* Adjusts height to make it taller */
+    resize: vertical; /* Allows users to resize vertically if needed */
+}

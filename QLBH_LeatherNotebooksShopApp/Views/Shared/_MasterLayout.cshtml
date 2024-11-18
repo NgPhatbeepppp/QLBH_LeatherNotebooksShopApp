@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+
+<html lang="vn">
+<head>
+    <meta charset="utf-8">
+    <title>Noteworthy</title>
+    <link rel="stylesheet" href="~/Content/css/Style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+    <!-----------------------------------HEADER---------------------------------------->
+    <div class="logo">
+        <img src="~/images/Logo.png" />
+    </div>
+    <header class="header">
+
+        <div class="menu">
+            <ul>
+
+                <li>@Html.ActionLink("Trang Chủ", "Index","Home")</li>
+                <li>@Html.ActionLink("Set Sổ Cơ Bản", "SetProducts")</li>
+                <li>
+                    @Html.ActionLink("Bìa Sổ NoteWorthy", "BiaProducts")
+                    <ul class="sub-menu">
+                        <li><a href="">Bìa Sổ Tiêu Chuẩn</a> </li>
+                        <li><a href="">Bìa Sổ Cỡ Nhỏ</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.ActionLink("Ruột Sổ NoteWorthy", "RuotProducts")
+
+                    <ul class="sub-menu">
+                        <li><a href="">Ruột Sổ Tiêu Chuẩn</a> </li>
+                        <li><a href="">Ruột Sổ Cỡ Nhỏ</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.ActionLink("Tập Tài Liệu Cài Sổ", "Tap")
+
+                    <ul class="sub-menu">
+                        <li><a href="">Tập Tài Liệu Cài Sổ Tiêu Chuẩn</a> </li>
+                        <li><a href="">Tập Tài Liệu Sổ Cỡ Nhỏ</a> </li>
+                    </ul>
+                </li>
+                <li>
+                    @Html.ActionLink("Phụ Kiện Sổ", "PhuKienProducts")
+                </li>
+            </ul>
+        </div>
+        <div class="icon">
+            <ul>
+                <li>
+                    <!-- Icon giao diện tìm kiếm -->                 
+                        <i class="fas fa-search" id="open-search"></i>               
+                    <!-- Overlay tìm kiếm toàn màn hình -->
+                        <div id="search-overlay">
+                            <div style="font-family:'Open Sans'" class="search-label">Tìm kiếm</div>
+                            <div class="search-container">
+                                <button id="close-search" class="close-btn">&times;</button>
+                                <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." autofocus />
+                                <div id="search-results">
+                                    <!-- Kết quả tìm kiếm sẽ hiển thị ở đây -->
+                                </div>
+                            </div>
+                        </div>
+                </li>
+                <li> <a class="fa-solid fa-circle-user" href="@Url.Action("Login","Customer")"> </a>  </li>
+                <li>
+                    <a class="fa-sharp fa-solid fa-cart-shopping" href="@Url.Action("ShowCart", "ShoppingCart")" title="Giỏ hàng"></a>
+                </li>
+
+
+            </ul>
+        </div>
+    </header>
+
+    @RenderBody()
+    <footer>
+        <div class="footer-top">
+            <ul>
+                <li class="footer-icon">
+                    <h2 style="color:#CCC">Sổ Tay NoteWorthy</h2>
+                    <a href=""><i class="fa-brands fa-facebook"></i></a>
+                    <a style="color:red" href=""><i class="fa-brands fa-youtube"></i></a>
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="footer-center">
+            <ul>
+                <h4>Địa chỉ cửa hàng</h4>               
+                <li>Số 107-D4, ngõ 28C, Lương Định Của, phường Phương Mai, quận Đống Đa, Hà Nội</li>
+                <br>
+                <li>Hotline bán lẻ: 0852272749 (9:00 - 21:30 tất cả các ngày)</li>
+                <br>
+                <h4>Liên hệ hợp tác</h4>            
+                <li>Số zalo: 0888941295 - 0333146688</li>               
+                <li>Email: ucm.dulieu@gmail.com</li>
+                <br>
+                <li>Quý đối tác vui lòng gửi yêu cầu hợp tác bằng văn bản qua hình thức nhắn tin zalo / gửi email. Noteworthy sẽ phản hồi lại bằng tin nhắn / email / gọi điện trực tiếp trong vòng 24h làm việc (không tính chủ nhật)</li>
+            </ul>
+        </div>
+    </footer>
+    <!-- Scripts Section -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("Scripts", required: false)
+    <script>
+    $(document).ready(function() {
+        window.addToCart = function(productId) {
+            console.log("Adding product with ID:", productId);
+            $.ajax({
+                url: '@Url.Action("AddToCart", "ShoppingCart")',
+                type: 'POST',
+                data: { productId: productId },
+                success: function (response) {
+                    console.log(response);
+                    if (response.success) {
+                        alert("Sản phẩm đã được thêm vào giỏ hàng!");
+                        $("#cart-item-count").text(response.itemCount);
+                    } else {
+                        alert(response.message || "Không thể thêm sản phẩm vào giỏ hàng.");
+                    }
+                },
+                error: function () {
+                    alert("Đã xảy ra lỗi khi thêm sản phẩm vào giỏ hàng.");
+                }
+            });
+        };
+    });
+        document.addEventListener("DOMContentLoaded", function () {
+            const openSearchBtn = document.getElementById("open-search");
+            const closeSearchBtn = document.getElementById("close-search");
+            const searchOverlay = document.getElementById("search-overlay");
+            const searchInput = document.getElementById("search-input");
+            const searchResults = document.getElementById("search-results");
+
+            // Mở giao diện tìm kiếm
+            openSearchBtn.addEventListener("click", function () {
+                searchOverlay.classList.add("active");
+                searchInput.focus(); // Đặt con trỏ vào ô input
+            });
+
+            // Đóng giao diện tìm kiếm
+            closeSearchBtn.addEventListener("click", function () {
+                searchOverlay.classList.remove("active");
+            });
+
+            // Tìm kiếm sản phẩm khi nhập
+            searchInput.addEventListener("input", function () {
+                const query = this.value.trim();
+
+                if (query.length > 0) {
+                    // Gửi yêu cầu AJAX đến server
+                    fetch(`/Products/Search?query=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            searchResults.innerHTML = ""; // Xóa kết quả cũ
+                            if (data.length > 0) {
+                                data.forEach(product => {
+                                    const item = document.createElement("div");
+                                    item.className = "search-item";
+                                    item.innerHTML = `
+                                <a href="/Home/Details/${product.ProductID}">
+                                    ${product.NamePro} - ${product.Price.toLocaleString()} VND
+                                </a>`;
+                                    searchResults.appendChild(item);
+                                });
+                            } else {
+                                searchResults.innerHTML = `<p>Không tìm thấy sản phẩm nào.</p>`;
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Lỗi tìm kiếm:", error);
+                        });
+                } else {
+                    searchResults.innerHTML = ""; // Xóa kết quả nếu không có input
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
+

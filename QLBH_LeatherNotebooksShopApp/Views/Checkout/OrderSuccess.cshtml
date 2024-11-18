@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Đặt Hàng Thành Công";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h2>Đặt Hàng Thành Công</h2>
+
+<div class="success-message">
+    <h3>Cảm ơn bạn đã đặt hàng!</h3>
+    <p>Đơn hàng của bạn đã được xử lý thành công.</p>
+
+    <h4>Thông Tin Đơn Hàng:</h4>
+    <ul>
+        <li>Mã đơn hàng: @ViewBag.OrderId</li>
+        <li>Ngày đặt hàng: @DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")</li>
+        <li>Địa chỉ giao hàng: @ViewBag.DeliveryAddress</li>
+        <li>Phương thức thanh toán: @ViewBag.PaymentMethod</li>
+    </ul>
+
+    <h4>Chi Tiết Sản Phẩm:</h4>
+    <ul>
+        @foreach (var item in ViewBag.OrderDetails)
+        {
+            <li>
+                @item.Product.NamePro - Số lượng: @item.Quantity - Giá: @String.Format("{0:C0}", item.UnitPrice) VND
+            </li>
+        }
+    </ul>
+
+    <p>Chúng tôi sẽ liên hệ với bạn để xác nhận đơn hàng.</p>
+    <p><a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại trang chủ</a></p>
+</div>
+
+<style>
+    .success-message {
+        border: 1px solid #28a745;
+        background-color: #d4edda;
+        padding: 20px;
+        border-radius: 5px;
+        color: #155724;
+        margin: 20px;
+    }
+
+    h2, h3, h4 {
+        margin-bottom: 10px;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .btn {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+</style>

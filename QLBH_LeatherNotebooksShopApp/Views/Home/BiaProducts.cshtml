@@ -1,0 +1,110 @@
+﻿@model IEnumerable<QLBH_LeatherNotebooksShopApp.Models.Product>
+@{
+    ViewBag.Title = "SetProducts";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<div class="container mt-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Views/Home/Index.cshtml">TRANG CHU</a></li>
+            <li class="breadcrumb-item active" aria-current="page">BÌA SỔ NOTEWORTHY</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            <h5 class="mb-4">SẢN PHẨM</h5>
+            <ul class="list-group">
+                <li class="list-group-item">@Html.ActionLink("Set Sổ Cơ Bản", "SetProducts")</li>
+                <li class="list-group-item">@Html.ActionLink("Bìa Sổ NoteWorthy", "BiaProducts")</li>
+                <li class="list-group-item">@Html.ActionLink("Ruột Sổ NoteWorthy", "SetProducts")</li>
+                <li class="list-group-item">@Html.ActionLink("Phụ Kiện Sổ", "PhuKienProducts")</li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">Sản Phẩm (@ViewBag.ProductCount sản phẩm)</h5>
+                <div>
+                    <a href="#" class="btn btn-outline-secondary btn-sm">Bộ Lọc</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="partialview-set">
+                    @Html.Partial("PartialProbycate", Model.Where(p => p.CategoryID == 2).ToList())
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<style>
+    .product-list {
+        justify-content: flex-start;
+    }
+
+    .container {
+        margin-left: 10px;
+        margin-right: 10px
+    }
+
+    .breadcrumb {
+        background-color: transparent;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: none;
+        transition: transform 0.2s ease;
+    }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+    .justify-content-between {
+        border-bottom: 2px solid #FFD15C;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .list-group {
+        border: none;
+        --bs-list-group-border-color: white;
+        --bs-list-group-item-padding-y: 0.3rem;
+    }
+
+    .list-group-item {
+        text-decoration: none !important;
+        color: black !important;
+    }
+
+        .list-group-item:hover {
+            color: #0B4A3B;
+        }
+
+    .mt-4 {
+        margin-top: 2rem !important;
+    }
+    a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+</style>
